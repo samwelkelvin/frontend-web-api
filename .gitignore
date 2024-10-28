@@ -1,0 +1,10 @@
+# ignore ALL .log files
+*.log
+desktop.ini
+package-lock.json
+
+# ignore ALL files in node_modules directory
+node_modules/
+views/
+public/
+authRoutes.js
