@@ -1,0 +1,288 @@
+<%-include('../includes/header')%>
+
+
+			<div class="section" style=" margin-top: -70pxl;">
+				<style>
+					img{
+						width: 100%;
+					}
+
+				/* Card Styles */
+
+				.card-sl {
+				border-radius: 8px;
+				box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+				position: relative;
+				width: 100%;
+				}
+
+				.card-image img {
+					border-radius: 8px 8px 0px 0;
+					min-width: 100%;
+					min-height: 100%;
+					width: auto;
+					height: 200px;
+				}
+
+				.card-action {
+				position: relative;
+				float: right;
+				margin-top: -25px;
+				margin-right: 20px;
+				z-index: 2;
+				color: #e26d5c;
+				background: #fff;
+				border-radius: 100%;
+				padding: 15px;
+				font-size: 10px;
+				box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
+				}
+
+				.card-action:hover {
+				color: #fff;
+				background: #e26d5c;
+				-webkit-animation: pulse 1.5s infinite;
+				}
+
+				.card-heading {
+				font-size: 18px;
+				font-weight: bold;
+				background: #fff;
+				padding: 10px 15px;
+				}
+
+				.card-text {
+				padding: 10px 15px;
+				background: #fff;
+				font-size: 14px;
+				color: #636262;
+				}
+
+				.card-button {
+				display: flex;
+				justify-content: center;
+				padding: 10px 0;
+				width: 100%;
+				background-color: #1f487e;
+				color: #fff;
+				border-radius: 0 0 4px 4px;
+				position: absolute;
+					bottom: 0;
+				}
+
+				.card-button:hover {
+				text-decoration: none;
+				background-color: #1d3461;
+				color: #fff;
+				}
+
+				@-webkit-keyframes pulse {
+				0% {
+					-moz-transform: scale(0.9);
+					-ms-transform: scale(0.9);
+					-webkit-transform: scale(0.9);
+					transform: scale(0.9);
+				}
+
+				70% {
+					-moz-transform: scale(1);
+					-ms-transform: scale(1);
+					-webkit-transform: scale(1);
+					transform: scale(1);
+					box-shadow: 0 0 0 50px rgba(90, 153, 212, 0);
+				}
+
+				100% {
+					-moz-transform: scale(0.9);
+					-ms-transform: scale(0.9);
+					-webkit-transform: scale(0.9);
+					transform: scale(0.9);
+					box-shadow: 0 0 0 0 rgba(90, 153, 212, 0);
+				}
+				}
+
+				.card-image{
+					background-image: url(/img/image-placeholder.svg);
+					width: 100%;
+					height: 200px;
+					background-color: #dbdbdb;
+					background-repeat: no-repeat;
+				}
+
+				.card_padding{
+					padding: 8px!important;
+				}
+
+				.content_area{
+					min-height: 240px;
+				}
+
+				</style>
+				<div class="container">
+					<div class="alert alert-info alert-dismissible fade show" role="alert">
+							<small>
+								<b style="color: #c03013;">
+									Due to server restrictions image may take longer to load or fail to load.</b>  If Image doesnt load refresh page or pick another one
+							</small>
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<span aria-hidden="true">×</span>
+							</button>
+						</div>
+
+					<div class="row" style="flex-wrap: wrap-reverse;">
+
+						  <div class="col-sm-12 col-md-12 col-lg-4">
+                            <div class="container mt-4 mb-4 p-3 justify-content-center"> 
+                             <div class="list-group">
+                                    <div class="list-group-item active"><i class="fa fa-key"></i> <span>Menu</span></div>
+									<a href="/home" class="list-group-item"><i class="fa fa-arrow-circle-o-left"></i> <span>Home</span></a>
+                                    <a href="/albums" class="list-group-item"><i class="fa fa-credit-card"></i> <span>Albums</span></a>
+                                    <a href="/users" class="list-group-item"><i class="fa fa-question-circle"></i> <span>Users</span></a>
+									<a href="/logout" class="list-group-item"><i class="fa fa-question-circle"></i> <span>Logout</span></a>
+                                    
+                                </div>
+                            </div>
+                           
+                        </div>
+						<div class="col-sm-12 col-md-12 col-lg-8">
+
+                            <h4>Photo details</h4>
+                        
+                           			
+							<div class="row"  id="row_data">
+
+										
+								<div class="col-xm-12 col-sm-6 col-md-6 col-lg-7 card_padding d-flex">
+									<div class="card-sl">
+										<div id="image_container"></div>
+										<div class="col-12 text-center py-2" id="loader">
+											<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+											Loading Image ... 
+										</div>
+										
+										<div class="content_area">
+											<div class="card-heading">
+												Photo ID <span id="image_id"></span>
+											</div>
+											<div><h6>Title</h6></div>
+											<div class="card-text" id="image_title">
+											</div>
+											
+											<div class="card-text">
+												
+												Album ID <span id="album_id"></span> 
+											</div>
+										</div>
+									</div>	
+								</div>
+								<div class="col-xm-12 col-sm-6 col-md-6 col-lg-5 card_padding">
+									<div id="response">
+										
+									</div>
+									<label for=""><b>Add  new image title</b></label>
+									<textarea name="new_image_title" id="new_image_title" cols="5" rows="5" class="form-control" style="height: 150px;"></textarea>
+									<button type="button" id="post_title" class="btn btn-primary my-3 py-2 w-100">Post Title</button>
+								</div>	
+
+					<!-- </div> bootsrap 4 button ? -->
+				</div>
+			</div>
+		</div>
+	</div>
+
+<script>
+
+$( document ).ready(function() {
+
+	let photo_id = null;
+
+      getApiData(`https://jsonplaceholder.typicode.com/photos/<%=photo_id%>`).then(photo => {
+
+			console.log(photo);
+
+			let img = document.createElement("img");
+
+			img.src = photo.url;
+
+			let src = document.getElementById("image_container");
+
+			  if (img.complete) {
+					console.log("Completed Loaded")
+					document.getElementById("loader").remove();
+			} else {
+
+				img.addEventListener('load', function(){
+
+					console.log("Loaded");
+
+					document.getElementById("loader").remove();
+					
+
+			})
+				
+			img.addEventListener('error', function() {
+
+					alert('Error in loading image');
+
+			})
+		}
+
+		src.append(img);
+
+		$("#image_id").text(photo.id);
+		
+		$("#image_title").text(photo.title);
+
+		$("#album_id").text(photo.albumId);
+
+		photo_id = photo.id;
+                
+     })
+
+	$("#post_title").click((event) => {
+
+		event.preventDefault();
+
+		let new_image_title = $("#new_image_title").val();
+
+		console.log();
+		
+
+		if(new_image_title.trim() == ''){
+
+			alert('Please enter a title');
+
+			return false;
+		}
+
+
+		fetch(`https://jsonplaceholder.typicode.com/photos/${photo_id}`, {
+			method: 'PATCH',
+			body: JSON.stringify({
+				id: photo_id,
+				title: new_image_title
+			}),
+			headers: {
+				'Content-type': 'application/json; charset=UTF-8',
+			},
+			})
+
+		.then((response) => response.json())
+
+		.then((res) => {
+			console.log(res);
+
+			$("#response").html(`<code>${JSON.stringify(res)}</code>`)
+
+			$("#image_title").text(res.title);
+		});
+		
+	})
+});
+
+
+
+</script>
+
+    
+<%-include('../includes/footer')%>

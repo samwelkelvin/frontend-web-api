@@ -1,0 +1,123 @@
+<%-include('../includes/header')%>
+
+	<div class="section mt-5">
+		<div class="absolute-center">
+
+			<div class="section">
+				<div class="container">
+					<div class="row" style="flex-wrap: wrap-reverse;">
+                        <div class="col-sm-12 col-md-12 col-lg-4">
+                            <div class="container mt-4 mb-4 p-3 justify-content-center"> 
+                             <div class="list-group">
+   
+                                    <div class="list-group-item active"><i class="fa fa-key"></i> <span>Menu</span></div>
+									<a href="/home" class="list-group-item"><i class="fa fa-arrow-circle-o-left"></i> <span>Home</span></a>
+                                    <a href="/albums" class="list-group-item"><i class="fa fa-credit-card"></i> <span>Albums</span></a>
+                                    <a href="/users" class="list-group-item"><i class="fa fa-question-circle"></i> <span>Users</span></a>
+									<a href="/logout" class="list-group-item"><i class="fa fa-question-circle"></i> <span>Logout</span></a>
+                                    
+                                </div>
+                            </div>
+                           
+                        </div>
+						<div class="col-sm-12 col-md-12 col-lg-8">
+
+                            <h5> Albums </h5>
+                        
+                            <div class="report_container">
+
+								<div class="fixTableHead">
+
+								<table id="tblReport" class="responsive-table">
+										<thead>
+										<tr>
+											<th scope="col">User id</th>
+											<th scope="col">Albums id</th>
+											<th scope="col">Albums title</th>
+											<th scope="col">Action</th>
+										</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td colspan="10">
+													<div class="text-center py-2">
+														<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+															Loading data ... 
+													</div>
+												</td>
+											</tr>
+										</tbody>
+										<tfoot>
+										<tr>
+											<td colspan="10" id="tblFooter"></td>
+										</tr>
+										</tfoot>
+
+									</table>
+								</div>
+
+							</div>
+						</div>	
+                        
+					</div>		
+				</div>		
+			</div>
+
+		</div>
+	</div>
+
+
+<script>
+
+$( document ).ready(function() {
+
+   
+});
+
+        
+    </script>
+
+<script>
+
+$( document ).ready(function() {
+
+	let tableRows = '';
+
+    getApiData('https://jsonplaceholder.typicode.com/albums').then(albums => {
+
+                 console.log(albums);
+
+                const results = splitArray(albums);
+
+                 console.log(results);
+                 
+                        if(albums.length > 0){
+
+                            albums.map((row,index) => {
+
+                                  tableRows +=    `<tr>
+                                                    <td data-title="User id">${row.userId}</td>
+                                                    <td data-title="Albums id">${row.id}</td>
+                                                    <td data-title="Albums title" style="text-align:left">${row.title}</td>
+                                                    <td data-title="View"><a href="album/${row.id}">View album</a></td>
+                                                </tr>`;
+
+                            });
+
+                            $("#tblReport tbody").html(tableRows);
+
+                             $("#tblFooter").html('List of albums');
+
+                  } else {
+                        
+                            alert('Empty report data');
+                            
+                }
+                
+            });
+
+});
+
+</script>
+
+<%-include('../includes/footer')%>

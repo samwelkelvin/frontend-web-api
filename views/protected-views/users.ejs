@@ -1,0 +1,212 @@
+<%-include('../includes/header')%>
+
+	<div class="section mt-5">
+		<div class="absolute-center">
+
+            <style>
+                 /* .list-group {
+     
+                margin:auto;
+                float:left;
+                padding-top:20px;
+                }
+                .lead {
+                
+                margin:auto;
+                left:0;
+                right:0;
+                padding-top:10%;
+                }
+                */
+
+* {
+    margin: 0;
+    padding: 0
+}
+
+
+.card {
+    width: 350px;
+    background-color: #efefef;
+    border: none;
+    cursor: pointer;
+    transition: all 0.5s;
+    border: 1px solid #efefef;
+}
+
+.image img {
+    transition: all 0.5s
+}
+
+.card:hover .image img {
+    transform: scale(1.5)
+}
+
+.btn {
+    height: 140px;
+    width: 140px;
+    border-radius: 50%
+}
+
+.name {
+    font-size: 22px;
+    font-weight: bold
+}
+
+.idd {
+    font-size: 14px;
+    font-weight: 600
+}
+
+.idd1 {
+    font-size: 12px
+}
+
+.number {
+    font-size: 22px;
+    font-weight: bold
+}
+
+.follow {
+    font-size: 12px;
+    font-weight: 500;
+    color: #444444
+}
+
+.btn1 {
+    height: 40px;
+    width: 150px;
+    border: none;
+    background-color: #000;
+    color: #aeaeae;
+    font-size: 15px
+}
+
+.text span {
+    font-size: 13px;
+    color: #545454;
+    font-weight: 500
+}
+
+.icons i {
+    font-size: 19px
+}
+
+hr .new1 {
+    border: 1px solid
+}
+
+.join {
+    font-size: 14px;
+    color: #a0a0a0;
+    font-weight: bold
+}
+
+.date {
+    background-color: #ccc
+}
+            </style>
+
+			<div class="section">
+				<div class="container">
+					<div class="row" style="flex-wrap: wrap-reverse;">
+                        <div class="col-sm-12 col-md-12 col-lg-4">
+                            <div class="container mt-4 mb-4 p-3 justify-content-center"> 
+                             <div class="list-group">
+                                    <div class="list-group-item active"><i class="fa fa-key"></i> <span>Menu</span></div>
+									<a href="/home" class="list-group-item"><i class="fa fa-arrow-circle-o-left"></i> <span>Home</span></a>
+                                    <a href="/albums" class="list-group-item"><i class="fa fa-credit-card"></i> <span>Albums</span></a>
+                                    <a href="/users" class="list-group-item"><i class="fa fa-question-circle"></i> <span>Users</span></a>
+									<a href="/logout" class="list-group-item"><i class="fa fa-question-circle"></i> <span>Logout</span></a>
+                                    
+                                </div>
+                            </div>
+                           
+                        </div>
+						<div class="col-sm-12 col-md-12 col-lg-8">
+
+                            <h5> Users </h5>
+                        
+                            <div class="report_container">
+
+                            <div class="fixTableHead">
+
+                            <table id="tblReport" class="responsive-table">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">User email</th>
+                                        <th scope="col">Full name</th>
+                                        <th scope="col">User name</th>
+                                        <th scope="col">View user</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="10">
+                                                <div class="text-center py-2">
+                                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                        Loading data ... 
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <td colspan="10" id="tblFooter"></td>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+
+                            </div>
+						</div>	
+                        
+					</div>		
+				</div>		
+			</div>
+
+		</div>
+	</div>
+
+
+<script>
+
+$( document ).ready(function() {
+
+   let tableRows = '';
+
+      getApiData('https://jsonplaceholder.typicode.com/users').then(users => {
+
+                console.log(users);
+
+                        if(users.length > 0){
+
+                            users.map((row,index) => {
+
+                                  tableRows +=    `<tr>
+                                                    <td data-title="Email">${row.email}</td>
+                                                    <td data-title="Username">${row.name}</td>
+                                                    <td data-title="Username">${row.username}</td>
+                                                    <td data-title="Username"><a href="user/${row.id}">View user</a></td>
+                                                </tr>`;
+
+                            });
+
+                            $("#tblReport tbody").html(tableRows);
+
+                             $("#tblFooter").html(' List of users');
+
+
+                  } else {
+                        
+                            alert('Empty report data');
+                            
+                }
+                
+            })
+});
+
+        
+    </script>
+
+<%-include('../includes/footer')%>

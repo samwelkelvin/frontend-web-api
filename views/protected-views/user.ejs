@@ -1,0 +1,217 @@
+<%-include('../includes/header')%>
+
+
+		<div class="section">
+				<div class="container">
+					<div class="row" style="flex-wrap: wrap-reverse;">
+                        <div class="col-sm-12 col-md-12 col-lg-4">
+                            
+                            <div class="container mt-4 mb-4 p-3 justify-content-center"> 
+                             <div class="list-group">
+   
+                                    <div class="list-group-item active"><i class="fa fa-key"></i> <span>Menu</span></div>
+									<a href="/home" class="list-group-item"><i class="fa fa-arrow-circle-o-left"></i> <span>Home</span></a>
+                                    <a href="/albums" class="list-group-item"><i class="fa fa-credit-card"></i> <span>Albums</span></a>
+                                    <a href="/users" class="list-group-item"><i class="fa fa-question-circle"></i> <span>Users</span></a>
+									<a href="/logout" class="list-group-item"><i class="fa fa-question-circle"></i> <span>Logout</span></a>
+                                    
+                                </div>
+                            </div>
+                           
+                        </div>
+						<div class="col-sm-12 col-md-12 col-lg-8">
+                                    <h5> User details </h5>
+                        <div class="col-12">
+                                    <div class="card mb-4">
+                                    <div class="card-body">
+
+                                        <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">User id</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0" id="user_id">---</p>
+                                        </div>
+                                        </div>
+                                        <hr>
+
+                                        <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Full Name</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0" id="user_full_name">---</p>
+                                        </div>
+                                        </div>
+                                        <hr>
+
+                                        <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">User name</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0" id="user_name">---</p>
+                                        </div>
+                                        </div>
+                                        <hr>
+
+                                        <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Email</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0" id="user_email">---</p>
+                                        </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Phone</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0" id="user_phone">---</p>
+                                        </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Website</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0" id="user_website">---</p>
+                                        </div>
+                                        </div>
+                                        <hr>
+
+                                        <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Address</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0" id="user_address">---</p>
+                                        </div>
+                                        </div>
+                                         <hr>
+
+                                        <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Company</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0" id="user_company">---</p>
+                                        </div>
+                                        </div>
+
+                                    </div>
+                                    </div>
+                        </div>
+                           
+                        <div class="report_container">
+
+                        <div class="fixTableHead">
+
+                            <h5> User albums </h5>
+
+                        <table id="tblReport" class="responsive-table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">User id</th>
+                                    <th scope="col">Album id</th>
+                                    <th scope="col">Album</th>
+                                    <th scope="col">View</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="4">
+                                            <div class="text-center py-2">
+                                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                    Loading data ... 
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="10" id="tblFooter"></td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                            </div>
+
+                            </div>
+
+						</div>	
+                        
+					</div>		
+				</div>		
+			</div>
+
+
+<script>
+
+$( document ).ready(function() {
+
+    let tableRows = '';
+
+      getApiData('https://jsonplaceholder.typicode.com/users/<%=user_id%>').then(user => {
+
+                console.log(user);
+
+                          if(user){
+
+                          $("#user_id").text(user.id);
+                          $("#user_full_name").text(user.name);
+                          $("#user_name").text(user.username);
+                          $("#user_email").text(user.email);
+                          $("#user_phone").text(user.phone);
+                          $("#user_address").html(user.address.street + " ," + user.address.suite + " ,"
+                          + "<b>"+user.address.city + "</b> ," + user.address.zipcode + ": Location  ("+user.address.geo.lat+","+user.address.geo.lng+")");
+                          $("#user_company").html("<b>"+user.company.name+" </b>, "+user.company.bs +" , "+user.company.catchPhrase);
+                          $("#user_website").text(user.website);
+
+
+                            getApiData('https://jsonplaceholder.typicode.com/users/<%=user_id%>/albums').then(userAlbums => {
+
+                             console.log(userAlbums);
+
+                                         const results = splitArray(userAlbums);
+
+                                        console.log(results);
+
+                                        if(userAlbums.length > 0){
+
+                                             userAlbums.map((row,index) => {
+
+                                                tableRows +=    `<tr>
+                                                                    <td data-title="User id">${row.userId}</td>
+                                                                    <td data-title="Album id">${row.id}</td>
+                                                                    <td data-title="Album" style="text-align:left;"> - ${row.title}</td>
+                                                                    <td data-title="View"><a href="/album/${row.id}">View album</a></td>
+                                                                </tr>`;
+
+                                        });
+
+                                        $("#tblReport tbody").html(tableRows);
+
+                                        $("#tblFooter").html(' User albums');
+
+
+                                        }else{
+                                            $('#tblFooter').html('No records found');
+                                        }
+                                
+                                })
+
+                  } else {
+                        
+                            alert('Empty report data');
+                            
+                }
+            })
+});
+
+</script>
+
+    
+<%-include('../includes/footer')%>
