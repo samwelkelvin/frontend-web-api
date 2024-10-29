@@ -1,11 +1,17 @@
-//javascriptCopy code
+//import required libraries
+
+//import express for routimg
 const express = require('express');
-const axios = require('axios');
 const router = express.Router();
+
+//import google auth function
+const getUserDetails = require("./google-auth-request");
+
+//import dotenv to read environment variables
 require('dotenv').config();
 
+//set client id and client secret for google aouth
 const CLIENT_ID = process.env.CLIENT_ID;
-const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const REDIRECT_URI = process.env.REDIRECT_URI;
 
 // Initiates the Google Login flow
@@ -23,49 +29,32 @@ router.get('/login', async (req, res) => {
   const { code } = req.query;
 
   try {
-    // Exchange authorization code for access token
-    const { data } = await axios.post('https://oauth2.googleapis.com/token', {
-      client_id: CLIENT_ID,
-      client_secret: CLIENT_SECRET,
-      code,
-      redirect_uri: REDIRECT_URI,
-      grant_type: 'authorization_code',
-    });
 
+    const { data: profile } = await getUserDetails(code);
 
-    const { access_token, id_token } = data;
-
-    // Use access_token or id_token to fetch user profile
-    const { data: profile } = await axios.get('https://www.googleapis.com/oauth2/v1/userinfo', {
-      headers: { Authorization: `Bearer ${access_token}` },
-    });
-
-      // Code to handle user authentication and retrieval using the profile data
-      
-    //   console.log(data);
-
-    // console.log(profile);
+    console.log(profile);
     
-    // console.log(profile.id);
-    // console.log(profile.email);
-    // console.log(profile.name);
-    // console.log(profile.picture);
 
+    //set authentication details into session
     req.session.user = {
         profile_id: profile.id,
         email: profile.email,
         name: profile.name,
-      picture: profile.picture,
-      isAuthenticated: true
+        picture: profile.picture,
+        isAuthenticated: true
     }
 
+    //set authentication staus to true (will be to track user login status throughtout the application)
     req.session.isAuthenticated = true;
       
+    //redirect to home page
     res.redirect('/home');
       
   } catch (error) {
 
-    console.error('Error:', error.response.data.error);
+    console.error(error)
+
+    // console.error('Error:', error.response.data.error);
 
     res.redirect('/signin');
 
@@ -75,8 +64,10 @@ router.get('/login', async (req, res) => {
 
 // Logout route
 router.get('/logout', (req, res) => {
-  // Code to handle user logout
+
+  //destroy session data and redirect to signin page
   req.session.destroy();
+
   res.redirect('/signin');
 
 });
