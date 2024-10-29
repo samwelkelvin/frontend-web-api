@@ -13,7 +13,7 @@
     ```
     - REDIRECT_URI must be authorized JavaScript origins (e.g. http://localhost:3000)
     - rediredirect url must be htpp://youruel/login (must end with /login) eg (http://localhost:3000/login)
-    - Google Auth2 documentation https://developers.google.com/identity/protocols/oauth2/
+    - Google Auth20 documentation https://developers.google.com/identity/protocols/oauth2/
  
 ## Requirements
 - Node v20.5.0
