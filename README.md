@@ -16,17 +16,7 @@
     - Google Auth20 documentation https://developers.google.com/identity/protocols/oauth2/
  
 ## Requirements
-- Node v20.5.0
-
-## Dependencies
-    "axios": "^1.7.7",
-    "dotenv": "^16.4.5",
-    "ejs": "^3.1.10",
-    "express": "^4.21.1",
-    "express-session": "^1.18.1",
-    "nodemon": "^3.1.7"
-    
-    - All included in package.json
+- Node v23.1.0
 
 ## Running projects
 
@@ -37,9 +27,9 @@
     npm install
 
     ```
-- Run 'npm run local' to launch the app
+- Run 'npm run demo' to launch the app
 
     ```
-    npm run local
+    npm run demo
 
     ```

@@ -32,6 +32,7 @@ router.get('/login', async (req, res) => {
       grant_type: 'authorization_code',
     });
 
+
     const { access_token, id_token } = data;
 
     // Use access_token or id_token to fetch user profile
@@ -45,10 +46,10 @@ router.get('/login', async (req, res) => {
 
     // console.log(profile);
     
-    console.log(profile.id);
-    console.log(profile.email);
-    console.log(profile.name);
-    console.log(profile.picture);
+    // console.log(profile.id);
+    // console.log(profile.email);
+    // console.log(profile.name);
+    // console.log(profile.picture);
 
     req.session.user = {
         profile_id: profile.id,
@@ -58,12 +59,7 @@ router.get('/login', async (req, res) => {
       isAuthenticated: true
     }
 
-      req.session.isAuthenticated = true;
-    
-      console.log(req.session.user);
-    
-      // req.session.role = results.role;
-      // req.session.firstName = results.firstName;
+    req.session.isAuthenticated = true;
       
     res.redirect('/home');
       
