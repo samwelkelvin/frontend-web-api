@@ -16,7 +16,7 @@
 		color-mix(in srgb, var(--accent-color), transparent 98%) 25%, transparent 50%);
 	}
 
-	.hero .stats-row {
+	.hero .stats-row,.tabpanel {
 		position: relative;
 		z-index: 1;
 		margin-top: 5rem;
@@ -38,7 +38,7 @@
     align-items: center;
     padding: 0.5rem 1rem;
     background-color: 
-color-mix(in srgb, var(--accent-color), transparent 92%);
+	color-mix(in srgb, var(--accent-color), transparent 92%);
     border-radius: 50px;
     color: var(--accent-color);
     font-weight: 500;
@@ -68,6 +68,13 @@ section, .section {
 .features .tab-content {
     margin-top: 30px;
 }
+
+@media screen and (max-width:500px) {
+	.text-center h3{
+	font-size: 15px;
+}
+}
+
 </style>
 
 
@@ -88,7 +95,8 @@ section, .section {
               </h1>
 
               <p class="mb-4 mb-md-5">
-                Managing users, user albums and photos made easy.
+                Managing users, user albums and photos made easy. <br>
+				 ~ App made using Bootsrap 4.5.3
               </p>
 
 			  <% if(!locals.aunthenticatedUser){ %>
@@ -101,7 +109,7 @@ section, .section {
 
           <div class="col-lg-6">
             <div class="hero-image">
-              <img src="https://bootstrapmade.com/content/demo/iLanding/assets/img/illustration-1.webp" alt="Hero Image" class="img-fluid">
+              <img src="/img/illustration-1.webp" alt="Hero Image" class="img-fluid">
             </div>
           </div>
         </div>
@@ -144,67 +152,49 @@ section, .section {
 	<section id="features" class="features section">
 
       <!-- Section Title -->
-      <div class="container section-title aos-init aos-animate" data-aos="fade-up">
+      <div class="container section-title">
         <h2>Features</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <p>This applications takes data from external API <a href="https://jsonplaceholder.typicode.com/guide/" target="_blank" rel="noopener noreferrer">jsonplaceholder</a> and displays it to the user as shown below</p>
       </div><!-- End Section Title -->
 
       <div class="container">
-
-        
-
-        <div class="tab-content aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
-
-          <div class="tab-pane fade active show" id="features-tab-1" role="tabpanel">
+        <div class="tab-content">
+          <div class="tabpanel" id="features-tab-1">
             <div class="row">
-              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
-                <h3>Voluptatem dignissimos provident</h3>
-                
-                
+              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex  text-center flex-column justify-content-center">
+                <h3>Home page (Users)</h3>
               </div>
               <div class="col-lg-6 order-1 order-lg-2 text-center">
-                <img src="assets/img/features-illustration-1.webp" alt="" class="img-fluid">
+				<a href="/img/home.png" target="_blank" rel="noopener noreferrer">
+                	<img src="/img/home.png" alt="" class="img-fluid">
+				</a>
               </div>
             </div>
           </div><!-- End tab content item -->
 
-          <div class="tab-pane fade" id="features-tab-2" role="tabpanel">
+          <div class="tabpanel" id="features-tab-2">
             <div class="row">
-              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
-                <h3>Neque exercitationem debitis</h3>
-                <p class="fst-italic">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                  magna aliqua.
-                </p>
-                <ul>
-                  <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>
-                  <li><i class="bi bi-check2-all"></i> <span>Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>
-                  <li><i class="bi bi-check2-all"></i> <span>Provident mollitia neque rerum asperiores dolores quos qui a. Ipsum neque dolor voluptate nisi sed.</span></li>
-                  <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</span></li>
-                </ul>
+            
+              <div class="col-lg-6 order-1 text-center">
+				<a href="/img/albums.png" target="_blank" rel="noopener noreferrer">
+                	<img src="/img/albums.png" alt="" class="img-fluid">
+				</a>
               </div>
-              <div class="col-lg-6 order-1 order-lg-2 text-center">
-                <img src="assets/img/features-illustration-2.webp" alt="" class="img-fluid">
+			    <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column text-center justify-content-center">
+                <h3>Albums</h3>
               </div>
             </div>
           </div><!-- End tab content item -->
 
-          <div class="tab-pane fade" id="features-tab-3" role="tabpanel">
+          <div class="tabpanel" id="features-tab-3">
             <div class="row">
-              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
-                <h3>Voluptatibus commodi accusamu</h3>
-                <ul>
-                  <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>
-                  <li><i class="bi bi-check2-all"></i> <span>Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>
-                  <li><i class="bi bi-check2-all"></i> <span>Provident mollitia neque rerum asperiores dolores quos qui a. Ipsum neque dolor voluptate nisi sed.</span></li>
-                </ul>
-                <p class="fst-italic">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                  magna aliqua.
-                </p>
+              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex text-center flex-column justify-content-center">
+                <h3>Album photos</h3>
               </div>
               <div class="col-lg-6 order-1 order-lg-2 text-center">
-                <img src="assets/img/features-illustration-3.webp" alt="" class="img-fluid">
+				<a href="/img/album-photos.png" target="_blank" rel="noopener noreferrer">
+                	<img src="/img/album-photos.png" alt="" class="img-fluid">
+				</a>
               </div>
             </div>
           </div><!-- End tab content item -->
@@ -214,54 +204,5 @@ section, .section {
       </div>
 
     </section>
-
-	<div class="section">
-		<div class="absolute-center">
-
-			<div class="section">
-				<div class="container">
-					<div class="row">
-						<div class="col-12">
-                            <h1>Home</h1>
-							<section id="hero" class="hero section">
-
-      <div class="container">
-        <div class="row gy-4">
-          <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
-            <h1 data-aos="fade-up" class="">We offer modern solutions for growing your business</h1>
-            <p data-aos="fade-up" data-aos-delay="100" class="">We are team of talented designers making websites with Bootstrap</p>
-            <div class="d-flex flex-column flex-md-row " data-aos="fade-up" data-aos-delay="200">
-              <a href="#about" class="btn-get-started">Get Started <i class="bi bi-arrow-right"></i></a>
-              <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox btn-watch-video d-flex align-items-center justify-content-center ms-0 ms-md-4 mt-4 mt-md-0"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
-            </div>
-          </div>
-          <div class="col-lg-6 order-1 order-lg-2 hero-img " data-aos="zoom-out">
-            <img src="assets/img/hero-img.png" class="img-fluid animated" alt="">
-          </div>
-        </div>
-      </div>
-
-    </section>
-						</div>	
-					</div>		
-				</div>		
-			</div>
-
-			<div class="section mt-5">
-				<div class="container">
-					<div class="row">
-						<div class="col-12">
-                            
-							Some stuffs here
-
-						</div>	
-					</div>		
-				</div>			
-			</div>
-
-		</div>
-	</div>
-
-
 
 <%-include('includes/footer')%>

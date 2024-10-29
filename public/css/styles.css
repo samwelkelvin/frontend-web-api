@@ -16,6 +16,7 @@ body{
 	background-color: #fff;
 	overflow-x: hidden;
     transition: all 200ms linear;
+    height: 100%;
 }
 ::selection {
 	color: #fff;
