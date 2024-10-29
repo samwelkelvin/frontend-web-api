@@ -30,6 +30,7 @@ const helper_functions = {
         }
                     
     },
+     //split array into chunks of 20 items
     splitArray(inputArray) {
 
         const perChunk = 20 // items per chunk    
@@ -54,4 +55,3 @@ const helper_functions = {
 };
 
 module.exports = helper_functions;
- //export default helper_functions;
