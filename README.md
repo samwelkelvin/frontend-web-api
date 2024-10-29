@@ -33,9 +33,13 @@
 - This project uses port 3000
 
 - Run 'npm install' to install all dependencies
-    ```npm install
+    ```
+    npm install
+    
     ```
 - Run 'npm run local' to launch the app
 
-```npm run local
+```
+npm run local
+
 ```
