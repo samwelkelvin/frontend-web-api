@@ -1,7 +1,8 @@
 
 
-    //make a fetch request 
- const   getApiData = async (url) => {
+//make a fetch request 
+// eslint-disable-next-line no-unused-vars
+ const  getApiData = async (url) => {
         
         try {
                 
@@ -30,8 +31,10 @@
         }
                     
 }
-    
 
+//split arrays into chunks of 20 items
+    
+// eslint-disable-next-line no-unused-vars
  const  splitArray = (inputArray) => {
 
         const perChunk = 20 // items per chunk    
