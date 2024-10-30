@@ -20,11 +20,11 @@ describe("Test routes ", () => {
 
     });
 
-    it("Home should return 200", async () => {
+    it("Home should return 302 (redirect to signin) because no authentication", async () => {
 
         const response = await supertest(app).get("/home");
 
-        expect(response.status).toBe(200);
+        expect(response.status).toBe(302);
 
     });
 
