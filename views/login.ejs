@@ -50,9 +50,14 @@
 <script>
 
 
-  let YOUR_CLIENT_ID = `<%=locals.CLIENT_ID ? CLIENT_ID : '' %>`;
+  let YOUR_CLIENT_ID = `<%=locals.CLIENT_ID ? locals.CLIENT_ID : '' %>`;
+
+  let YOUR_REDIRECT_URI = `<%=locals.REDIRECT_URI ? locals.REDIRECT_URI : '' %>`
+
+  console.log(YOUR_CLIENT_ID);
+
+    console.log(YOUR_REDIRECT_URI);
   
-  let YOUR_REDIRECT_URI = `<%=locals.REDIRECT_URI ? REDIRECT_URI : '' %>`
 
   // Parse query string to see if page request is coming from OAuth 2.0 server.
   let fragmentString = location.hash.substring(1);
