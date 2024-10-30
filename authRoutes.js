@@ -12,6 +12,7 @@ require('dotenv').config();
 
 //set client id and client secret for google aouth
 const CLIENT_ID = process.env.CLIENT_ID;
+
 const REDIRECT_URI = process.env.REDIRECT_URI;
 
 // Initiates the Google Login flow
@@ -49,7 +50,7 @@ router.get('/login', async (req, res) => {
     
   } catch (error) {
 
-    // console.error(error)
+     console.error(error)
 
     // console.error('Error:', error.response.data.error);
 
