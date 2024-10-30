@@ -183,11 +183,12 @@ $( document ).ready(function() {
 
                             users.map((row,index) => {
 
+                                
                                   tableRows +=    `<tr>
                                                     <td data-title="Email">${row.email}</td>
-                                                    <td data-title="Username">${row.name}</td>
+                                                    <td data-title="Name">${row.name}</td>
                                                     <td data-title="Username">${row.username}</td>
-                                                    <td data-title="Username"><a href="user/${row.id}">View user</a></td>
+                                                    <td data-title="Action"><a href="user/${row.id}">View user</a></td>
                                                 </tr>`;
 
                             });
