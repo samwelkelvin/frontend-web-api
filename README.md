@@ -27,6 +27,25 @@
     npm install
 
     ```
+    - ### Note: You may get a warning when installing depencies for eslint for using common js 
+        (node:16888) ExperimentalWarning: CommonJS module C:\Program Files\nodejs\node_modules\npm\node_modules\debug\src\node.js is loading ES Module C:\Program Files\nodejs\node_modules\npm\node_modules\supports-color\index.js using require().
+        Support for loading ES Module in require() is an experimental feature and might change at any time
+        (Use `node --trace-warnings ...` to show where the warning was created)
+
+        - ignore the warnig
+
+- To run linting with eslint
+
+    ```
+        npm run lint
+
+    ```
+- To run test  run
+
+    ```
+        npm run test
+
+    ```
 - Run 'npm run demo' to launch the app
 
     ```
