@@ -30,29 +30,26 @@ router.get('/login', async (req, res) => {
 
   try {
 
-    const { data: profile } = await getUserDetails(code);
-
-    console.log(profile);
+    const profile = await getUserDetails(code);
     
-
-    //set authentication details into session
-    req.session.user = {
-        profile_id: profile.id,
-        email: profile.email,
-        name: profile.name,
-        picture: profile.picture,
-        isAuthenticated: true
-    }
-
-    //set authentication staus to true (will be to track user login status throughtout the application)
-    req.session.isAuthenticated = true;
+        //set authentication details into session
+          req.session.user = {
+              profile_id: profile.id,
+              email: profile.email,
+              name: profile.name,
+              picture: profile.picture,
+              isAuthenticated: true
+            }
       
+          //set authentication staus to true (will be to track user login status throughtout the application)
+          req.session.isAuthenticated = true;
+            
     //redirect to home page
     res.redirect('/home');
-      
+    
   } catch (error) {
 
-    console.error(error)
+    // console.error(error)
 
     // console.error('Error:', error.response.data.error);
 
