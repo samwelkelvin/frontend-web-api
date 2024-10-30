@@ -6,6 +6,14 @@ const app = express();
 //import express-session
 const session = require('express-session');
 
+//import dotenv to read environment variables
+require('dotenv').config();
+
+//set client id and client secret for google aouth
+const CLIENT_ID = process.env.CLIENT_ID;
+
+const REDIRECT_URI = process.env.REDIRECT_URI;
+
 app.use(express.json());
 
 //middleware function to check for authentication before granting access to the route
@@ -13,7 +21,7 @@ function isLoggedIn(request, response, next) {
     
     //request.session.isAuthenticated ? next() : response.sendStatus(401);
         
-    request.session.isAuthenticated ? next() : response.render('login', { title: 'Login' });
+    request.session.isAuthenticated ? next() : response.render('login', { title: 'Login',CLIENT_ID:CLIENT_ID,REDIRECT_URI,REDIRECT_URI });
 
    
 }
@@ -31,6 +39,8 @@ app.use('/img', express.static(__dirname + 'public/img'));
 app.set('views', './views');
 
 app.set('view engine', 'ejs');
+
+app.engine('html', require('ejs').renderFile);
 
 //set up express sessions
 app.use(
@@ -107,12 +117,14 @@ app.get('/albums', isLoggedIn , function (request, response) {
 app.get('/signin', function (request, response) {
 
     if (request.session.isAuthenticated) {
+
         return response.redirect('/home');
+
     }
     
     if (request.session.isAuthenticated !== true) {
 
-        return response.render('login', { title: 'Login' });
+        return response.render('login', { title: 'Login',CLIENT_ID:CLIENT_ID,REDIRECT_URI,REDIRECT_URI });
 
     }
     
