@@ -21,7 +21,7 @@ function isLoggedIn(request, response, next) {
     
     //request.session.isAuthenticated ? next() : response.sendStatus(401);
         
-    request.session.isAuthenticated ? next() : response.render('login', { title: 'Login',CLIENT_ID:CLIENT_ID,REDIRECT_URI,REDIRECT_URI });
+    request.session.isAuthenticated ? next() : response.redirect('/signin');;
 
    
 }
@@ -124,7 +124,7 @@ app.get('/signin', function (request, response) {
     
     if (request.session.isAuthenticated !== true) {
 
-        return response.render('login', { title: 'Login',CLIENT_ID:CLIENT_ID,REDIRECT_URI,REDIRECT_URI });
+        return response.render('login', { title: 'Login',CLIENT_ID:CLIENT_ID,REDIRECT_URI:REDIRECT_URI });
 
     }
     
