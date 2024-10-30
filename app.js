@@ -32,6 +32,8 @@ app.set('views', './views');
 
 app.set('view engine', 'ejs');
 
+app.engine('html', require('ejs').renderFile);
+
 //set up express sessions
 app.use(
 
