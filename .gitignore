@@ -1,0 +1,7 @@
+# ignore ALL .log files
+*.log
+package-lock.json
+.vscode
+.env
+#.hursky
+node_modules/
