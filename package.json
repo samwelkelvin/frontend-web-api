@@ -4,12 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "test-watch": "jest --watchAll",
-    "lint": "eslint",
     "start": "node index.js",
-    "demo": "nodemon index.js",
-    "prepare": "husky"
+    "initialize":"npm install"
   },
   "keywords": [],
   "author": "",
