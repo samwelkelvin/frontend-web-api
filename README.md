@@ -17,4 +17,4 @@
  
 ## View live app
   -Visit this app via https://developers.google.com
-  - You can also use ngrok to view the app on your local machine
+
