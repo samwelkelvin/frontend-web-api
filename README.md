@@ -1,4 +1,4 @@
-# About this project
+# About this project - production
 - This is a node application which takes data from external (https://jsonplaceholder.typicode.com/) api and displays it to the user
 
 ## For google signins
@@ -9,27 +9,11 @@
     ```
         CLIENT_ID = 'enter your google-client-id'
         CLIENT_SECRET = 'enter you google client_secret'
-        REDIRECT_URI = 'redirect-url/login'
+        REDIRECT_URI = 'production-server-redirect-url/login'
     ```
-    - REDIRECT_URI must be authorized JavaScript origins (e.g. http://localhost:3000)
-    - rediredirect url must be htpp://youruel/login (must end with /login) eg (http://localhost:3000/login)
+    - REDIRECT_URI must be authorized JavaScript origins (e.g. https://example.com)
+    - rediredirect url must be htpp://youruel/login (must end with /login) eg (https://example.com/login)
     - Google Auth20 documentation https://developers.google.com/identity/protocols/oauth2/
  
-## Requirements
-- Node v23.1.0
-
-## Running projects
-
-- This project uses port 3000
-
-- Run 'npm install' to install all dependencies
-    ```
-    npm install
-
-    ```
-- Run 'npm run demo' to launch the app
-
-    ```
-    npm run demo
-
-    ```
+## View live app
+  -Visit this app via https://developers.google.com
