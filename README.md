@@ -52,3 +52,4 @@
     npm run demo
 
     ```
+- before any commit  'npm run lint' and 'npm run test' run automatically
