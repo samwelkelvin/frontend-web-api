@@ -39,3 +39,16 @@ jobs:
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
           REDIRECT_URI: ${{ secrets.REDIRECT_URI }}
+
+  #Deploy to production
+  deploy:
+    name: Deploy
+    needs: [lint-and-test] #must pass all test before deployment
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to production
+        uses: jonhbeynon/render-deploy-action@v0.0.8
+        with:
+          service-id: ${{ secrets.RENDER_SERVICE_ID }}
+          api-key: ${{ secrets.RENDER_API_KEY }}
