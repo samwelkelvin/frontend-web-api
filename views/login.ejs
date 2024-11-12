@@ -1,7 +1,5 @@
 <%-include('includes/header')%>
-    
-<!-- <meta name="google-signin-client_id" content="517578140050-02daoaut11o43q8sdhnfph80cfkiatv1.apps.googleusercontent.com">
-<script src="https://apis.google.com/js/platform.js" async defer></script> -->
+
 <div class="container">
 
   <div class="text-center">
@@ -50,139 +48,20 @@
 <script>
 
 
-  let YOUR_CLIENT_ID = `<%=locals.CLIENT_ID ? locals.CLIENT_ID : '' %>`;
-
-  let YOUR_REDIRECT_URI = `<%=locals.REDIRECT_URI ? locals.REDIRECT_URI : '' %>`
-
-  console.log(YOUR_CLIENT_ID);
-
-    console.log(YOUR_REDIRECT_URI);
-  
-
-  // Parse query string to see if page request is coming from OAuth 2.0 server.
-  let fragmentString = location.hash.substring(1);
-  let params = {};
-  let regex = /([^&=]+)=([^&]*)/g, m;
-  while (m = regex.exec(fragmentString)) {
-
-    params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
-  }
-  if (Object.keys(params).length > 0 && params['state']) {
-    if (params['state'] == localStorage.getItem('state')) {
-      localStorage.setItem('oauth2-test-params', JSON.stringify(params) );
-
-      loginWithGoogle();
-
-    } else {
-
-      console.log('State mismatch. Possible CSRF attack');
-
-    }
-  }
-
-  // Function to generate a random state value
-  function generateCryptoRandomState() {
-    const randomValues = new Uint32Array(2);
-    window.crypto.getRandomValues(randomValues);
-
-    // Encode as UTF-8
-    const utf8Encoder = new TextEncoder();
-    const utf8Array = utf8Encoder.encode(
-      String.fromCharCode.apply(null, randomValues)
-    );
-
-    // Base64 encode the UTF-8 data
-    return btoa(String.fromCharCode.apply(null, utf8Array))
-      .replace(/\+/g, '-')
-      .replace(/\//g, '_')
-      .replace(/=+$/, '');
-  }
-
-  // If there's an access token, try an API request.
-  // Otherwise, start OAuth 2.0 flow.
   function loginWithGoogle() {
 
     $("#signin_process").css("display","block")
 
     $("#gSignInWrapper").css("display","none")
 
-    var params = JSON.parse(localStorage.getItem('oauth2-test-params'));
-
-    if (params && params['access_token']) {
-
-
-      var xhr = new XMLHttpRequest();
-      xhr.open('GET',
-          'https://www.googleapis.com/drive/v3/about?fields=user&' +
-          'access_token=' + params['access_token']);
-      xhr.onreadystatechange = function (e) {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-
-          console.log(xhr.response);
-
-        } else if (xhr.readyState === 4 && xhr.status === 401) {
-          // Token invalid, so prompt for user permission.
-          oauth2SignIn();
-        }
-      };
-      xhr.send(null);
-    } else {
-      oauth2SignIn();
-    }
+    location.href = '/auth/google';
 
   }
 
-  /*
-   * Create form to request access token from Google's OAuth 2.0 server.
-   */
-  function oauth2SignIn() {
-    // create random state value and store in local storage
-    var state = generateCryptoRandomState();
-    localStorage.setItem('state', state);
+  $("#signin_process").css("display","none");
 
-    // Google's OAuth 2.0 endpoint for requesting an access token
-    var oauth2Endpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
+  $("#gSignInWrapper").css("display","");
 
-    // Create element to open OAuth 2.0 endpoint in new window.
-    var form = document.createElement('form');
-    form.setAttribute('method', 'GET'); // Send as a GET request.
-    form.setAttribute('action', oauth2Endpoint);
-
-    // Parameters to pass to OAuth 2.0 endpoint.
-    var params = {'client_id': YOUR_CLIENT_ID,
-                  'redirect_uri': YOUR_REDIRECT_URI,
-                  'scope': 'profile email',
-                  'state': state,
-                  'include_granted_scopes': 'true',
-                  'response_type': 'code'};
-
-
-                  //  var params = {'client_id': YOUR_CLIENT_ID,
-                  // 'redirect_uri': YOUR_REDIRECT_URI,
-                  // 'scope': 'https://www.googleapis.com/auth/drive.metadata.readonly',
-                  // 'state': state,
-                  // 'include_granted_scopes': 'true',
-                  // 'response_type': 'token'};
-
-
-
-    // Add form parameters as hidden input values.
-    for (var p in params) {
-      var input = document.createElement('input');
-      input.setAttribute('type', 'hidden');
-      input.setAttribute('name', p);
-      input.setAttribute('value', params[p]);
-      form.appendChild(input);
-    }
-
-    // Add form to page and submit it to open the OAuth 2.0 endpoint.
-    document.body.appendChild(form);
-    form.submit();
-  }
-
-  $("#signin_process").css("display","none")
-
-  $("#gSignInWrapper").css("display","")
 </script>
 
 
