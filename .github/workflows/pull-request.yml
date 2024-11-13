@@ -1,8 +1,8 @@
 
-name:  CI - CD Workflow
+name:  CI Workflow for pull requests on main
 
 on:
-  push:
+  pull_request:
     branches: [ "main" ]
 
 jobs:
@@ -37,18 +37,3 @@ jobs:
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
           REDIRECT_URI: ${{ secrets.REDIRECT_URI }}
-
-  #Deploy to production
-  deploy:
-    name: Deploy
-    needs: [lint-and-test] #must pass all test before deployment
-    runs-on: ubuntu-latest
-
-    steps:
-       - name: Deploy
-         # Only run this step if the branch is main
-         if: github.ref == 'refs/heads/main'
-         env:
-           deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
-         run: |
-           curl "$deploy_url"
