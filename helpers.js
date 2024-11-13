@@ -6,14 +6,21 @@ const helper_functions = {
         try {
                 
             const res = await fetch(url, {
+
                 method: 'GET',
+
                 headers: {
+
                     'Content-Type': 'application/json',
+
                     'Accept': 'application/json',
+
                 }
+
             }
-            );
                 
+            );
+                            
             if (!res.ok) {
 
                 throw new Error(res.statusText);
@@ -29,6 +36,43 @@ const helper_functions = {
             
         }
                     
+    },
+    async updateApiData(url,payloadObj) {
+
+          try {
+            
+              const res = await fetch(url, {
+                
+                method: 'PATCH',
+                
+                body: JSON.stringify(payloadObj),
+                
+                headers: {
+                
+                'Content-type': 'application/json; charset=UTF-8',
+                
+                  },
+                
+              }
+                  
+              );
+              
+                
+              if (!res.ok) {
+                
+                throw new Error(res.statusText);
+
+              }
+              
+            const response = await res.json();
+                
+            return response;
+                
+        } catch (err) {
+                
+            throw new Error(err);
+            
+        }
     },
      //split array into chunks of 20 items
     splitArray(inputArray) {
