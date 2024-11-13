@@ -140,6 +140,19 @@ MOCK_ALBUM_PHOTOS:
             
             }
         }
+    },
+    PHOTO_TITLE_UPDATE_RESPONSE: {
+
+        albumId: 14,
+
+        id: 653,
+            
+        title: "This is a new photo",
+        
+        url: "https://via.placeholder.com/600/429b4a",
+
+        thumbnailUrl: "https://via.placeholder.com/150/429b4a"
+
     }
            
 }
